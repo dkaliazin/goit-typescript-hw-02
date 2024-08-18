@@ -17,7 +17,7 @@ function App() {
   const [page, setPage] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
-  const [selectedImage, setSelectedImage] = useState<string|null>(null);
+  const [selectedImage, setSelectedImage] = useState<Image|null>(null);
 
   const handleSearch = async (newTopicName: string) => {
     setImages([]);
@@ -51,8 +51,8 @@ const openModalWindow = (imageSrc: Image) => {
   if (!openModal) {
     console.log("Opening modal with image:", imageSrc);
     
-    const imageUrl = imageSrc.urls?.full ?? "fallback-image-url"; 
-    setSelectedImage(imageUrl);
+    /*const imageUrl = imageSrc.urls?.full ?? "fallback-image-url"; */
+    setSelectedImage(imageSrc.urls.full);
     
     setOpenModal(true);
   } else {
