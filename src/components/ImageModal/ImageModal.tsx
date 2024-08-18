@@ -7,11 +7,6 @@ interface ImageModalProps {
     imageSrc: Image
 }
 const ImageModal: React.FC<ImageModalProps> = ({ isOpen, onRequestClose, imageSrc }) => { 
-   if (!imageSrc.urls.full) {
-        console.log('URL not available');
-        return null;
-    }
-
     return (   
         <Modal
             isOpen={isOpen}
@@ -21,7 +16,11 @@ const ImageModal: React.FC<ImageModalProps> = ({ isOpen, onRequestClose, imageSr
             shouldCloseOnOverlayClick={true}
             ariaHideApp={true}
         >
-            <img src={imageSrc} alt="modal img" className={css.modalimage} />         
+            {imageSrc && (
+                <><img src={imageSrc.urls.regular} alt="modal img" className={css.modalimage} /></>
+                
+            )
+            }
         </Modal>
     );
 };
