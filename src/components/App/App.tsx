@@ -52,8 +52,8 @@ const openModalWindow = (imageSrc: Image) => {
     console.log("Opening modal with image:", imageSrc);
     
     /*const imageUrl = imageSrc.urls?.full ?? "fallback-image-url"; */
-    setSelectedImage(imageSrc.urls.full);
-    
+    /*setSelectedImage(imageSrc.urls.full);*/
+     setSelectedImage(imageSrc);
     setOpenModal(true);
   } else {
     console.warn("Modal is already open");

@@ -7,9 +7,9 @@ interface ImageModalProps {
     imageSrc: Image
 }
 const ImageModal: React.FC<ImageModalProps> = ({ isOpen, onRequestClose, imageSrc }) => { 
-    if (typeof imageSrc !== 'string') {
-        console.log('not string');
-        return null; 
+   if (!imageSrc.urls.full) {
+        console.log('URL not available');
+        return null;
     }
 
     return (   
