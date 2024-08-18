@@ -17,7 +17,7 @@ function App() {
   const [page, setPage] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
-  const [selectedImage, setSelectedImage] = useState<Image|null>(null);
+  const [selectedImage, setSelectedImage] = useState<string|null>(null);
 
   const handleSearch = async (newTopicName: string) => {
     setImages([]);
@@ -47,16 +47,18 @@ useEffect(() => {
   //Modal
   const [openModal, setOpenModal] = useState<boolean>(false);
   
-  const openModalWindow = (imageSrc: Image) => {
-     if (!openModal) {
-      console.log("Opening modal with image:", imageSrc);
-      setSelectedImage(imageSrc.urls.full);
-      setOpenModal(true);
+const openModalWindow = (imageSrc: Image) => {
+  if (!openModal) {
+    console.log("Opening modal with image:", imageSrc);
+    
+    const imageUrl = imageSrc.urls?.full ?? "fallback-image-url"; 
+    setSelectedImage(imageUrl);
+    
+    setOpenModal(true);
   } else {
     console.warn("Modal is already open");
   }
-  };
-
+};
   const closeModalWindow = () => {
     console.log("Closing modal");
     setSelectedImage(null);

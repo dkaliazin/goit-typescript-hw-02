@@ -8,7 +8,3 @@ export interface Image {
         full?: string;
     },
 }
-export interface ApiResponse {
-    results: Image[],
-    total_pages: number
-}
