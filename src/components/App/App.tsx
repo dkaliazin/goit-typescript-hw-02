@@ -11,6 +11,11 @@ import { Toaster } from 'react-hot-toast';
 import Modal from 'react-modal';
 import { Image } from '../../type';
 Modal.setAppElement('#root');
+
+interface UnsplashResponse {
+  results: Image[];
+}
+
 function App() {
   const [images, setImages] = useState<Image[]>([]);
   const [topicName, setTopicName] = useState<string>("");
@@ -31,7 +36,7 @@ useEffect(() => {
   const getImages = async () => {
     try {
       setLoading(true);
-      const results = await axios.get(`https://api.unsplash.com/search/photos?query=${topicName}&page=${page}&client_id=P7ByciXJKPkJC46zpMWNVK8C8nALBCKpESinSOr59DI`);
+      const results = await axios.get<UnsplashResponse>(`https://api.unsplash.com/search/photos?query=${topicName}&page=${page}&client_id=P7ByciXJKPkJC46zpMWNVK8C8nALBCKpESinSOr59DI`);
       setImages((prev) => [...prev, ...results.data.results]);
     } catch (error: unknown) {
       setError(true);
